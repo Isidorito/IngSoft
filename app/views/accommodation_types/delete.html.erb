@@ -1,0 +1,12 @@
+<h3> DELETE </h3>
+
+<%= form_for @delHospedaje do |f| %>
+	<%=f.label :nombre,'Name' %> 
+	<%=f.text_field :nombre %>
+
+	<%=f.label :activo %>
+	<%=f.check_box :activo %>
+
+	<%=f.submit 'Guardar' %>
+
+<% end %>	
