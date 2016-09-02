@@ -30,7 +30,8 @@ class AccommodationTypesController < ApplicationController
 		@tipoHospedaje = AccommodationType.new
 	end
 
-	def list
+	def admin
+		@tipoHospedaje = AccommodationType.all
 		
 	end
 end

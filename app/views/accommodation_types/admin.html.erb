@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+  </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="">Home</a>
+          <a class="blog-nav-item" href="admin">Admins Bathroom</a> <!Seccion para administrar usuarios y tipos de  hospedaje > 
+          <a class="blog-nav-item" href="user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su   perfil >
+          <a class="blog-nav-item" href="search">The Neigborhood</a> <!Seccion de ofertas de lugares >
+          <a class="blog-nav-item" href="about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
+        </nav>
+      </div>
+    </div>
+<!--
+<h1>Manejo tipos de Hospedaje</h1>
+      </div>
+      <div class="row">
+        <div class="col-md-6">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Tipo de Hospedaje</th>
+                <th>Activo</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+                <th>Desactivar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td><button type="button" class="btn btn-lg btn-warning">      </button></td>
+                <td><button type="button" class="btn btn-lg btn-danger" >      </button></td>
+                <td><button type="button" class="btn btn-lg btn-default">      </button></td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Larry</td>
+                <td>the Bird</td>
+                <td>@twitter</td>
+                <td>@mdo</td>
+                <td>@mdo</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <button type="button" class="btn btn-lg btn-info">Crear Nuevo Tipo de Hospedaje</button> -->
+   
+
+<h1> Hospedajes Prueba </h1>
+    <div class="row">
+        <div class="col-md-6">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Tipo de Hospedaje</th>
+                <th>Activo</th>
+                <th>Modificar</th>
+                <th>Eliminar</th>
+                <th>Desactivar</th>
+              </tr>
+            </thead>
+            <tbody>
+	<ul>
+		<% @tipoHospedaje.each do |h| %>
+			<tr>
+                <td> <%= h.id %> </td>
+                <td> <%= h.nombre %> </td>
+                <td>
+                	<% if h.activo == true %>
+                    <button type="button" class="btn btn-lg btn-success">      </button>
+                  <% else %>
+                    <button type="button" class="btn btn-lg btn-default">      </button>  
+                  <% end %>  
+                </td>
+                <td><button type="button" class="btn btn-lg btn-warning">      </button></td>
+                <td><button type="button" class="btn btn-lg btn-danger" >      </button></td>
+                <td><button type="button" class="btn btn-lg btn-default">      </button></td>
+             </tr>
+		<% end %>
+
+	</ul>
+			</tbody>
+          </table>
+        </div>
+      </div>
+
+    </body>

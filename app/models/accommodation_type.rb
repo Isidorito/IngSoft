@@ -1,2 +1,5 @@
 class AccommodationType < ApplicationRecord
+
+	
+
 end
