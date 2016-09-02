@@ -16,54 +16,7 @@
           <a class="blog-nav-item" href="about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
         </nav>
       </div>
-    </div>
-<!--
-<h1>Manejo tipos de Hospedaje</h1>
-      </div>
-      <div class="row">
-        <div class="col-md-6">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Tipo de Hospedaje</th>
-                <th>Activo</th>
-                <th>Modificar</th>
-                <th>Eliminar</th>
-                <th>Desactivar</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>1</td>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td><button type="button" class="btn btn-lg btn-warning">      </button></td>
-                <td><button type="button" class="btn btn-lg btn-danger" >      </button></td>
-                <td><button type="button" class="btn btn-lg btn-default">      </button></td>
-              </tr>
-              <tr>
-                <td>2</td>
-                <td>Jacob</td>
-                <td>Thornton</td>
-                <td>@fat</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-              <tr>
-                <td>3</td>
-                <td>Larry</td>
-                <td>the Bird</td>
-                <td>@twitter</td>
-                <td>@mdo</td>
-                <td>@mdo</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-      <button type="button" class="btn btn-lg btn-info">Crear Nuevo Tipo de Hospedaje</button> -->
-   
+    </div>   
 
 <h1> Hospedajes Prueba </h1>
     <div class="row">
@@ -83,18 +36,30 @@
 	<ul>
 		<% @tipoHospedaje.each do |h| %>
 			<tr>
-                <td> <%= h.id %> </td>
-                <td> <%= h.nombre %> </td>
+                <td> <%= h.id %> </td><!-- Num Id -->
+                <td> <%= h.nombre %> </td><!--Nombre del tipo de hospedaje -->
                 <td>
                 	<% if h.activo == true %>
-                    <button type="button" class="btn btn-lg btn-success">      </button>
+                    <button type="button" class="btn btn-lg btn-success">      </button><!-- Verde = TH Activo-->
                   <% else %>
-                    <button type="button" class="btn btn-lg btn-default">      </button>  
+                    <button type="button" class="btn btn-lg btn-default">      </button><!-- Blanc = TH Inact--> 
                   <% end %>  
                 </td>
-                <td><button type="button" class="btn btn-lg btn-warning">      </button></td>
-                <td><button type="button" class="btn btn-lg btn-danger" >      </button></td>
-                <td><button type="button" class="btn btn-lg btn-default">      </button></td>
+                <td>
+                  <a href="/index" class="btn btn-lg btn-warning" role="button" >         </a>
+                </td><!-- -->
+                <td>
+                  <a href="/index" class="btn btn-lg btn-danger" role="button" >         </a>
+                </td><!-- -->
+                <td>
+                  <% if h.activo == true %>
+                  <!-- Si es ACTIVO entonces muestra el boton de DESACTIVAR y viceversa-->
+                    <a href="/index" class="btn btn-lg btn-default" role="button" >         </a>
+                  <% else %>
+                    <a href="/index" class="btn btn-lg btn-success" role="button" >         </a>  
+                  <% end %> 
+                </td> 
+                
              </tr>
 		<% end %>
 
@@ -103,5 +68,7 @@
           </table>
         </div>
       </div>
-
+      
+      <td> <a href="/admin/new" class="btn btn-lg btn-info" role="button" >Crear Nuevo Tipo de Hospedaje</a>
+      </td>
     </body>
