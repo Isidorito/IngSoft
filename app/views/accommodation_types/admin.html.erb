@@ -46,17 +46,40 @@
                   <% end %>  
                 </td>
                 <td>
-                  <a href="/index" class="btn btn-lg btn-warning" role="button" >         </a>
-                </td><!-- -->
+                  <!-- <a href="/index" class="btn btn-lg btn-warning" role="button" >         </a> -->
+                  <%= button_to "         ", 
+                      edit_accommodation_type_path(h.id), 
+                      :method => :get,
+                      :class  => "btn btn-lg btn-warning"
+                  %>
+                </td><!--  -->
                 <td>
-                  <a href="/index" class="btn btn-lg btn-danger" role="button" >         </a>
+                  <!-- <a href="/index" class="btn btn-lg btn-danger" role="button" >         </a>  -->
+                    
+                  <%= button_to "         ", 
+                      accommodation_type_path(h.id), 
+                      :method => :delete,
+                      :class  => "btn btn-lg btn-danger" 
+                  %> 
                 </td><!-- -->
                 <td>
                   <% if h.activo == true %>
                   <!-- Si es ACTIVO entonces muestra el boton de DESACTIVAR y viceversa-->
-                    <a href="/index" class="btn btn-lg btn-default" role="button" >         </a>
+                  <!--  <a href="/index" class="btn btn-lg btn-default" role="button" >         </a> -->
+                    <%= button_to "         ",  
+                      accommodation_type_path(h.id),
+                      :action => 'show',
+                      :method => :get,
+                      :class  => "btn btn-lg btn-default" 
+                  %>
                   <% else %>
-                    <a href="/index" class="btn btn-lg btn-success" role="button" >         </a>  
+                  <!--  <a href="/index" class="btn btn-lg btn-success" role="button" >         </a> -->
+                    <%= button_to "         ",  
+                      accommodation_type_path(h.id),
+                      :action => 'show',
+                      :method => :get,
+                      :class  => "btn btn-lg btn-success" 
+                  %>
                   <% end %> 
                 </td> 
                 
