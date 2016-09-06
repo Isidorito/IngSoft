@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions' }
+  devise_for :users, controllers: { sessions: 'users/sessions'}
+  #  , registrations: 'users/registrations' }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :accommodation_types
@@ -19,4 +20,5 @@ Rails.application.routes.draw do
   get '/about'     ,to:'layouts#about'
   get '/search'    ,to:'accommodations#index'
 
+  get '/users/sign_up', to:'devise/registrations#new'
 end
