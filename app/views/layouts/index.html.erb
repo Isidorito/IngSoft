@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
+    <!--<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+       <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="Primer Sprint">
     <meta name="author" content="RoSaS">
@@ -15,14 +15,14 @@
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!--<link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet"> -->
 
     <!-- Custom styles for this template -->
     <link href="blog.css" rel="stylesheet">
 
     <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
     <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+    <!--<script src="../../assets/js/ie-emulation-modes-warning.js"></script> -->
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -41,6 +41,7 @@
           <a class="blog-nav-item" href="user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su   perfil >
           <a class="blog-nav-item" href="search">The Neigborhood</a> <!Seccion de ofertas de lugares >
           <a class="blog-nav-item" href="about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
+
         </nav>
       </div>
     </div>
@@ -89,9 +90,15 @@
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
-            <h4> :) </h4>
-            <button type="button" class="btn btn-lg btn-success">Login</button>
-            <button type="button" class="btn btn-lg btn-primary">Register</button>
+             <h4> :) </h4>
+              <% if user_signed_in? %> 
+                <strong><%= current_user.email %></strong>. 
+                 <%= button_to 'Edit profile', edit_user_registration_path, :class => 'btn btn-lg btn-primary' %> 
+               <%= button_to "Logout", destroy_user_session_path, method: :delete, :class => 'btn btn-lg btn-danger'  %>
+              <% else %> 
+                 <%= button_to "Sign up", new_user_registration_path, :class => 'btn btn-lg btn-success'  %> 
+                 <%= button_to "Login", new_user_session_path, :class => 'btn btn-lg btn-primary'  %>
+              <% end %>   
           </div>
           <div class="sidebar-module">
             <h4>The Shack</h4>

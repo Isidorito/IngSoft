@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  accomodation_type_id: 1
+  foto: MyString
+  user_id: 1
+  puntaje: 1
+  cantidadPersonas: 1
+  disponible: false
+  direccion: MyString
+  descripcion: MyString
+  string: MyString
+
+two:
+  accomodation_type_id: 1
+  foto: MyString
+  user_id: 1
+  puntaje: 1
+  cantidadPersonas: 1
+  disponible: false
+  direccion: MyString
+  descripcion: MyString
+  string: MyString

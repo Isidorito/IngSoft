@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+  </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item active" href="">Home</a>
+          <a class="blog-nav-item" href="admin">Admins Bathroom</a> <!Seccion para administrar usuarios y tipos de  hospedaje > 
+          <a class="blog-nav-item" href="user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su   perfil >
+          <a class="blog-nav-item" href="search">The Neigborhood</a> <!Seccion de ofertas de lugares >
+          <a class="blog-nav-item" href="about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
+        </nav>
+      </div>
+    </div>   
+
+<h1> Hospedajes Prueba </h1>
+    <div class="row">
+        <div class="col-md-6">
+              
+
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Tipo de Hospedaje</th>
+                <th>Foto</th>
+                <th>Propietario</th>
+                <th>Puntos</th>
+                <th>Tamanio</th>
+                <th>Direccion</th>
+                <th>Descripcion</th>
+              </tr>
+            </thead>
+            <tbody>
+	<ul>
+		<% @Hospedaje.each do |h| %>
+			<tr>
+                <td> <%= h.id %> </td><!-- Num Id -->
+                <td> <%= h.accomodation_type_id %> </td>
+                <td> <%= h.foto %> </td>
+                <td> <%= h.user_id %> </td>
+                <td> <%= h.puntaje %> </td>
+                <td> <%= h.cantidadPersonas %> </td>
+                <td> <%= h.direccion %> </td>
+                <td> <%= h.descripcion %> </td>
+                
+                
+       </tr>
+		<% end %>
+
+	</ul>
+			</tbody>
+          </table>
+        </div>
+      </div>
+
+ <div class="container"> 
+      <%= form_tag search_path, :method => :'get' do %>
+                <p>
+                    <%= text_field_tag :search, params[:search] %>
+                    <%= submit_tag "Nueva Busqueda" %>
+                </p>
+
+      <% end %>
+      </div>
+      
+      <td>  <a href="" class="btn btn-lg btn-info" role="button" >Volver</a>   </td>
+              
+
+      
+
+      
+
+    </body>
