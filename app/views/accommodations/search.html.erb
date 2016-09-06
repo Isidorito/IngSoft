@@ -21,8 +21,31 @@
 <h1> Hospedajes Prueba </h1>
     <div class="row">
         <div class="col-md-6">
-              
+ <!--             
+ <div class="container"> 
+      <%= form_tag search_path, :method => :'get' do %>
+                <p>
+                    <%= text_field_tag :search, params[:search] %>
+                    <%= submit_tag "Nueva Busqueda" %>
+                </p>
 
+      <% end %>
+      </div> -->
+
+      <div class="panel panel-success">
+            <div class="panel-heading">
+              <h3 class="panel-title">Nueva Busqueda</h3>
+            </div>
+            <div class="panel-body">
+              <%= form_tag search_path, :method => :'get' do %>
+                <p>
+                    <%= text_field_tag :search, params[:search] %>
+                    <%= submit_tag "Nueva Busqueda" %>
+                </p>
+
+      <% end %>
+            </div>
+          </div>
           <table class="table table-striped">
             <thead>
               <tr>
@@ -40,11 +63,38 @@
 	<ul>
 		<% @Hospedaje.each do |h| %>
 			<tr>
-                <td> <%= h.id %> </td><!-- Num Id -->
+                <td> <%= h.id %> </td><!-- <%= image_tag("0_0.png") %> -->
                 <td> <%= h.accomodation_type_id %> </td>
                 <td> <%= h.foto %> </td>
                 <td> <%= h.user_id %> </td>
-                <td> <%= h.puntaje %> </td>
+               
+               <td>
+                <% if h.puntaje == 0 %>
+                  <%= image_tag("/assets/stars/0_0.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 0 ) and (h.puntaje <= 10 )) %>
+                  <%= image_tag("/assets/stars/0_5.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 10 ) and (h.puntaje <= 20 )) %>
+                  <%= image_tag("/assets/stars/1.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 20 ) and (h.puntaje <= 30 ))%>
+                  <%= image_tag("/assets/stars/1_5.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 30 ) and (h.puntaje <= 40 ))%>
+                  <%= image_tag("/assets/stars/2.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 40 ) and (h.puntaje <= 50 )) %>
+                  <%= image_tag("/assets/stars/2_5.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 50 ) and (h.puntaje <= 60 )) %>
+                  <%= image_tag("/assets/stars/3.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 60 ) and (h.puntaje <= 70 )) %>
+                  <%= image_tag("/assets/stars/3_5.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 70 ) and (h.puntaje <= 80 )) %>
+                  <%= image_tag("/assets/stars/4.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 80 ) and (h.puntaje <= 90 )) %>
+                  <%= image_tag("/assets/stars/4_5.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 90 ) and (h.puntaje <= 100 )) %>
+                  <%= image_tag("/assets/stars/5.png", height: '15', width:'58') %>
+                <% end %>
+
+               </td>
+
                 <td> <%= h.cantidadPersonas %> </td>
                 <td> <%= h.direccion %> </td>
                 <td> <%= h.descripcion %> </td>
@@ -59,15 +109,6 @@
         </div>
       </div>
 
- <div class="container"> 
-      <%= form_tag search_path, :method => :'get' do %>
-                <p>
-                    <%= text_field_tag :search, params[:search] %>
-                    <%= submit_tag "Nueva Busqueda" %>
-                </p>
-
-      <% end %>
-      </div>
       
       <td>  <a href="" class="btn btn-lg btn-info" role="button" >Volver</a>   </td>
               

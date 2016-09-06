@@ -93,11 +93,17 @@
              <h4> :) </h4>
               <% if user_signed_in? %> 
                 <strong><%= current_user.email %></strong>. 
-                 <%= button_to 'Edit profile', edit_user_registration_path, method: :get, :class => 'btn btn-lg btn-primary' %> 
-               <%= button_to "Logout", destroy_user_session_path, method: :delete, :class => 'btn btn-lg btn-danger'  %>
+                <nav>
+                <ul class="pager">
+              <li><th><%= button_to 'Edit profile', edit_user_registration_path, method: :get, :class => 'btn btn-xs btn-primary' %> </li>
+                 <li><th><%= button_to "Logout", destroy_user_session_path, method: :delete, :class => 'btn btn-xs btn-danger'  %> </li>
+                </ul>
+                </nav>
               <% else %> 
-                 <%= button_to "Sign up", new_user_registration_path, method: :get, :class => 'btn btn-lg btn-success'  %> 
-                 <%= button_to "Login", new_user_session_path, method: :get, :class => 'btn btn-lg btn-primary'  %>
+                  <ul class="pager">
+                 <li><%= button_to "Sign up", new_user_registration_path, method: :get, :class => 'btn btn-xs btn-success' %> </li>
+                 <li><%= button_to "Login", new_user_session_path, method: :get, :class => 'btn btn-xs btn-primary'  %></li>
+                 </ul>
               <% end %>   
           </div>
           <div class="sidebar-module">
