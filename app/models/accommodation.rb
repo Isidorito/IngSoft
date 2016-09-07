@@ -16,7 +16,7 @@ def self.index(search)
   		where( "direccion ILIKE ?", "%#{search}%")
 
   else
-  		last(10)		
+  		last(10)	
   end						
 end	
 

@@ -19,7 +19,9 @@ h5, .h5,
 h6, .h6 {
   margin-top: 0;
   font-family: "Courier New", Courier, Monospace;
-  font-weight: bold; 
+  font-weight: bold;
+   background-color: #d6e9c6;
+   border-radius: 4px;
 }
 
 

@@ -9,7 +9,7 @@
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item" href="">Home</a>
+          <a class="blog-nav-item" href="http://localhost:3000">Home</a>
           <a class="blog-nav-item" href="admin">Admins Bathroom</a> <!Seccion para administrar usuarios y tipos de  hospedaje > 
           <a class="blog-nav-item" href="user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su   perfil >
           <a class="blog-nav-item active" href="search">The Neigborhood</a> <!Seccion de ofertas de lugares >
@@ -40,7 +40,7 @@
               <%= form_tag search_path, :method => :'get' do %>
                 <p>
                     <%= text_field_tag :search, params[:search] %>
-                    <%= submit_tag "Nueva Busqueda" %>
+                    <%= submit_tag "    ",  :class => "btn btn-lg btn-success" %>
                 </p>
 
       <% end %>
@@ -95,7 +95,20 @@
 
                </td>
 
-                <td> <%= h.cantidadPersonas %> </td>
+                <!--  <td> <%= h.cantidadPersonas %> </td> -->
+                <td> 
+                  <% if h.cantidadPersonas == 1 %>
+                     <button type="button" class="btn btn-success"> 1 </button>
+                  <% elsif h.cantidadPersonas == 2 %>
+                     <button type="button" class="btn btn-info"> 2 </button>
+                  <% elsif h.cantidadPersonas == 3 %>
+                     <button type="button" class="btn btn-primary"> 3 </button>
+                  <% elsif h.cantidadPersonas == 4 %>
+                     <button type="button" class="btn btn-warning"> 4 </button>
+                  <% elsif h.cantidadPersonas == 5 %>
+                     <button type="button" class="btn btn-danger"> 5 </button>
+                  <% end %>   
+                </td>
                 <td> <%= h.direccion %> </td>
                 <td> <%= h.descripcion %> </td>
                 
