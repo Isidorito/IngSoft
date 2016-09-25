@@ -6,6 +6,7 @@
 
   <body>
 
+
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
@@ -18,7 +19,9 @@
       </div>
     </div>   
 
-<h1> Administracion de Tipos de Hospedajes </h1>
+<% if user_signed_in? %>
+ <% if current_user.admin == true %> <!-- Checks if the user has admin privileges -->
+  <h1> Administracion de Tipos de Hospedajes </h1>
     <div class="row">
         <div class="col-md-6">
           <table class="table table-striped">
@@ -96,5 +99,14 @@
       <td> <a href="/admin/new" class="btn btn-lg btn-info" role="button" >Crear Nuevo Tipo de Hospedaje</a>
 
       </td>
+
+ <% else %>
+  <td> <a href="http://localhost:3000" class="btn btn-lg btn-danger" role="button" >Debe ser administrador para acceder a esta secciòn</a>  </td>
+ <% end %>
+
+<% else %>
+  <td> <a href="http://localhost:3000" class="btn btn-lg btn-danger" role="button" >Debe registrarse y ser administrador para acceder a esta secciòn</a>  </td>
+<% end %>
+
 
     </body>

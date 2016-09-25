@@ -13,11 +13,30 @@ class AccommodationTypesController < ApplicationController
 	end
 
 	def destroy
-		@h = AccommodationType.find(params.require(:id))
-		AccommodationType.destroy(@h.id)
+		
 		#AccommodationType.where(:id => (params.require(:id))).delete(params.require(:accommodation_type).permit(:nombre,:activo))
 		#AccommodationType.delete(params.require(:accommodation_type).permit(:nombre,:activo))
-		redirect_to :back
+		#  @h = AccommodationType.find(params.require(:id))
+		#  AccommodationType.destroy(@h.id)
+		#  redirect_to :back 
+		@h = AccommodationType.find(params.require(:id))
+		if Accommodation.exists?(accomodation_type_id: h.id )
+				  
+				  AccommodationType.destroy(@h.id)
+				  redirect_to :back
+		else
+
+			if @h.activo == true
+
+			#:activo => false
+			#AccommodationType.where(:id => (params.require(:id))).update(params.require(:accommodation_type).permit(:nombre,:activo => 'false'))
+			@h.update(:activo => 'false')
+			
+			end
+		
+		end		  
+
+
 	end
 
 
