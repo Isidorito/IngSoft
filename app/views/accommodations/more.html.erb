@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+  </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item" href="http://localhost:3000">Home</a>
+          <a class="blog-nav-item" href="http://localhost:3000/admin">Admins Bathroom</a> <!Seccion para administrar usuarios y tipos de  hospedaje > 
+          <a class="blog-nav-item" href="http://localhost:3000/user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su perfil >
+          <a class="blog-nav-item active" href="http://localhost:3000/search">The Neigborhood</a> <!Seccion de ofertas de lugares >
+          <a class="blog-nav-item" href="http://localhost:3000/about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
+        </nav>
+      </div>
+    </div> 
+
+
+<! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
+       <div class="container">
+          <h1> Hospedaje seleccionado </h1>
+
+            <% @Hospedaje.each do |h| %> <!-- Muestra Hospedajes del Usuario -->
+                      
+                         <%= h.id %>  <br></br>
+                            
+                         <b>Nombre: </b> <%= h.nombre %> <br></br>
+                         
+                         <b>Tipo de Hospedaje:    </b> <%= h.accommodation_type_id %> <br></br>
+                         <b>Capacidad:            </b> <%= h.cantidad_personas %> <br></br>
+                         <b>Usuario:              </b> <%= h.user_id %> <br></br>
+                         <b>Direcciòn:            </b> <%= h.direccion %> <br></br>
+                         <b>Imagen:               </b> <%= h.foto %> <br></br>
+                         <b>Puntuaciòn del Lugar: </b> <%= h.puntaje %> <br></br>
+                         <b>Descripciòn:          </b> <%= h.descripcion %> <br></br>  
+
+                         <% @auxOwner =  h.user_id %>
+                         <% @auxHId =  h.id %>          
+            <% end %>          
+
+
+
+
+
+
+       </div>   
+<! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
+
+        <div class="container">
+            <h1> Realizar Pregunta </h1>
+
+            <%= form_for @Pregunta do |p| %>
+
+                <%=p.label :question,'Ingrese su pregunta aquì' %> 
+                <%=p.text_field :question %>
+               
+                <%=p.hidden_field :accommodation_id, :value => @auxHId %>
+                
+                <%=p.hidden_field :asker, :value => current_user.id %>
+                
+                <%=p.hidden_field :accommodation_owner, :value => @auxOwner %>
+                
+            <%=p.submit 'Crear' %>
+
+    <% end %>
+
+        </div> 
+
+
+<! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
+
+
+
+
+
+
+<a href="" class="btn btn-lg btn-info" role="button" >
+            Volver
+        </a>     

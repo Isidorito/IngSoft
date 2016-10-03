@@ -9,16 +9,23 @@ Rails.application.routes.draw do
 
   resources :accommodations
 
+  resources :questions
+
+  resources :requests
+
   root 'layouts#index'
 
   #Routea los html de la barra de direcciones que estàn en layouts.
 
-  get '/admin'     ,to:'accommodation_types#admin'
-  get '/admin/new' ,to:'accommodation_types#new'    
-  get '/user'  	   ,to:'layouts#user'
-  get '/search'    ,to:'accommodations#search'
-  get '/about'     ,to:'layouts#about'
-  get '/search'    ,to:'accommodations#index'
+  get '/admin'               ,to:'accommodation_types#admin'
+  get '/admin/new'           ,to:'accommodation_types#new'    
+  get '/user'                ,to:'accommodations#user'
+  get '/search'              ,to:'accommodations#search'
+  get '/about'               ,to:'layouts#about'
+  get '/search'              ,to:'accommodations#index'
+  get '/accommodation/new'   ,to:'accommodations#new'
+  get '/accommodation'       ,to:'accommodations#cambioStatus'
+  get '/accommodation/more'  ,to:'accommodations#more'
 
-  get '/users/sign_up', to:'devise/registrations#new'
+  get '/users/sign_up'      ,to:'devise/registrations#new'
 end

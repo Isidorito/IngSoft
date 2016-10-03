@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  accommodation_type: 1
+  accommodation_owner: 1
+  requester: 1
+  initial_date: 
+  final_date: 2016-09-29
+
+two:
+  accommodation_type: 1
+  accommodation_owner: 1
+  requester: 1
+  initial_date: 
+  final_date: 2016-09-29

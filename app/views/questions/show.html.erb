@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+  </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item" href="http://localhost:3000">Home</a>
+          <a class="blog-nav-item" href="http://localhost:3000/admin">Admins Bathroom</a> <!Seccion para administrar usuarios y tipos de  hospedaje > 
+          <a class="blog-nav-item active" href="http://localhost:3000/user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su perfil >
+          <a class="blog-nav-item" href="http://localhost:3000/search">The Neigborhood</a> <!Seccion de ofertas de lugares >
+          <a class="blog-nav-item" href="http://localhost:3000/about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
+        </nav>
+      </div>
+    </div> 
+
+    <! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
+       <div class="container">
+          <h1> Preguntas </h1>
+
+            <% @Pregunta.each do |p| %> <!-- Muestra Hospedajes del Usuario -->
+                      
+                         <%= p.id %>  <br></br>
+                            
+                         <b>Usuario: </b> <%= p.asker %> <br></br>
+                         
+                         <b>Pregunta:    </b> <%= p.question %> <br></br>
+
+                        <% if p.answer == nil %>
+
+                              <%= form_for p do |p| %>
+
+
+                                  <%=p.label :answer,'Ingrese su respuesta aquì' %> 
+                                  <%=p.text_field :answer %>
+
+                                  <%=p.hidden_field :id %>
+
+                                  <%=p.submit 'Responder' %>
+
+                              <% end %>
+
+                        <% else %>
+
+                          <b>Respuesta:    </b> <%= p.answer %> <br></br>
+
+
+                        <% end %>
+                            
+                                  
+            <% end %>          
+
+    
+
+
+       </div>   
+<! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
+
+</body>

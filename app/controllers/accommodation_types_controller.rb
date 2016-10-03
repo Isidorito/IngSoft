@@ -19,11 +19,13 @@ class AccommodationTypesController < ApplicationController
 		#  @h = AccommodationType.find(params.require(:id))
 		#  AccommodationType.destroy(@h.id)
 		#  redirect_to :back 
-		@h = AccommodationType.find(params.require(:id))
-		if Accommodation.exists?(accomodation_type_id: h.id )
+
+		#@h.accommodations.empty?
+		@h = AccommodationType.find(params[:id])
+		if !Accommodation.exists?(accomodation_type_id: @h.id )
 				  
-				  AccommodationType.destroy(@h.id)
-				  redirect_to :back
+				  @h.destroy
+				#  redirect_to :back
 		else
 
 			if @h.activo == true
@@ -33,9 +35,10 @@ class AccommodationTypesController < ApplicationController
 			@h.update(:activo => 'false')
 			
 			end
-		
-		end		  
+			
+		end		
 
+		redirect_to :back
 
 	end
 

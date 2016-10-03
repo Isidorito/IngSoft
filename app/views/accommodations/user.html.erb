@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+  </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item" href="http://localhost:3000">Home</a>
+          <a class="blog-nav-item" href="http://localhost:3000/admin">Admins Bathroom</a> <!Seccion para administrar usuarios y tipos de  hospedaje > 
+          <a class="blog-nav-item active" href="http://localhost:3000/user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su perfil >
+          <a class="blog-nav-item" href="http://localhost:3000/search">The Neigborhood</a> <!Seccion de ofertas de lugares >
+          <a class="blog-nav-item" href="http://localhost:3000/about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
+        </nav>
+      </div>
+    </div>   
+
+<% if user_signed_in? %>
+      <div align="center" class="container">
+        <br></br>
+        <a href="/accommodation/new" class="btn btn-lg btn-info" role="button" >Ingresar Nuevo Hospedaje</a>
+        <br></br>
+      </div> 
+<! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
+      <% if Accommodation.exists?(user_id: current_user.id) %>
+       <div class="container">
+          <h1> Mis Hospedajes </h1>
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Nombre del Hospedaje</th>
+                    <th>Imagen</th>
+                    <th>Solicitudes</th>
+                    <th>Preguntas</th>
+                    <th>Activo en Buscador</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ul>
+                    <% @Hospedaje.each do |h| %> <!-- Muestra Hospedajes del Usuario -->
+                      <tr>
+                        <td> <%= h.id %>     </td><!--  Num Id -->
+                        <td> <%= h.nombre %> </td><!--  Nombre del hospedaje -->
+                        <td> <%= h.foto %>   </td><!--  La imagen se puede cargar siempre, pero solo se muestra en las busquedas cuando el usuario es Premmium -->
+                        <td> <!-- Botòn Solicitudes -->
+                           <% if !Request.exists?(accommodation_id: h.id )  %>  
+                           <!-- Si no hay Solicitudes, muestra el botòn en gris -->
+                              <button type="button" class="btn btn-lg btn-default">   0  </button>
+                           <% else %>
+                           <!-- Si hay Solicitudes, muestra el botòn en celeste -->
+                              <%= button_to "Ocultar",  
+                                  question(h.id),
+                                  :action => 'show',
+                                  :method => :get,
+                                  :class  => "btn btn-lg btn-primary" 
+                            %>
+                           <% end %>                             
+                
+                        </td>
+
+                        <td> <!-- Botòn Preguntas -->
+                            <% if !Question.exists?(accommodation_id: h.id )  %>  
+                              <!-- Si no hay Preguntas, muestra el botòn en gris -->
+                                 <%= button_to "0",  
+                                  question_url(h.id),
+                                  :action => 'show',
+                                  :method => :get,
+                                  :class  => "btn btn-lg btn-default" 
+                            %>
+                             <% else %>
+                              <!-- Si hay Preguntas, muestra el botòn en celeste -->
+                                 <%= button_to "X",  
+                                  question_url(h.id),
+                                  :action => 'show',
+                                  :method => :get,
+                                  :class  => "btn btn-lg btn-primary" 
+                            %>
+                             <% end %>                             
+                
+                        </td>
+                        <td> <!-- Botòn de Publicar -->
+                          <% if h.activo == true %>
+                          <!-- Si està ACTIVO entonces el Botòn DESACTIVA para que no se muestre en las busquedas-->
+                            <%= button_to "Ocultar",  
+                                  accommodation_url(h.id),
+                                  :action => 'cambioStatus',
+                                  :method => :put,
+                                  :class  => "btn btn-lg btn-default" 
+                            %>
+                          <% else %>
+                          <!-- Si està DESACTIVADO entonces el Botòn Activa para que se muestre en las busquedas -->
+                            <%= button_to "Mostrar",
+                                  accommodation_url(h.id),
+                                  :action => 'cambioStatus',
+                                  :method => :put,
+                                  :class  => "btn btn-lg btn-success" 
+                                  
+                            %>
+                          <% end %> 
+                        </td> 
+                      </tr>
+                    <% end %>  
+                  </ul>
+                </tbody>   
+              </table>
+            </div>
+          </div>     
+       </div>
+      <% else %>
+        <!-- Si el usuario no tiene ningùn hospedaje cargado, en lugar de mostrar la tabla, muestra un texto basico -->
+        <div class="container">
+          <h1> Usted no tiene Hospedajes cargados </h1>
+        </div>  
+      <% end %> 
+<! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
+       <div class="container">
+          <h1> Mis Preguntas realizadas </h1>
+          <div class="row">
+            <div class="col-md-6">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>id Hospedaje</th>
+                    <th>Propietario</th>
+                    <th>Pregunta</th>
+                    <th>Respuesta</th>
+                    <th>Eliminar</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  
+                    <ul>
+                    
+                    <% @MisPreguntas.each do |m| %>
+                    <tr>
+                          <td> <%= m.id %>     </td>
+                          <td> <%= m.accommodation_id %>     </td>
+                          <td> <%= m.accommodation_owner %>     </td>
+                          <td> <%= m.question %>     </td>
+                            <% if m.answer == nil %>
+                                <td> <button type="button" class="btn btn-lg btn-danger">      </button></td>
+                            <% else %>
+                                <td><%= button_to "         ",
+                                        user_path(current_user.id),
+                                        :action => 'show', 
+                                        :method => :get,
+                                        :class  => "btn btn-lg btn-success",
+                                        :data => {:confirm => m.answer} %></td>
+                            <% end %> 
+                          <td> <button type="button" class="btn btn-lg btn-default">      </button></td>   
+                    <% end %>
+                    </tr>
+                    </ul>
+                </tbody>   
+              </table>
+            </div>
+          </div>          
+       </div>
+
+    <br></br>
+    <td>  
+        <a href="" class="btn btn-lg btn-info" role="button" >
+            Volver
+        </a>   
+    </td>
+
+<% else %>
+    <td> 
+      <a href="http://localhost:3000" class="btn btn-lg btn-danger" role="button" >
+        Debe registrarse para acceder a esta secciòn
+      </a>  
+    </td>
+<% end %>
+
+    </body>

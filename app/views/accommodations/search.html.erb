@@ -10,10 +10,10 @@
       <div class="container">
         <nav class="blog-nav">
           <a class="blog-nav-item" href="http://localhost:3000">Home</a>
-          <a class="blog-nav-item" href="admin">Admins Bathroom</a> <!Seccion para administrar usuarios y tipos de  hospedaje > 
-          <a class="blog-nav-item" href="user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su   perfil >
-          <a class="blog-nav-item active" href="search">The Neigborhood</a> <!Seccion de ofertas de lugares >
-          <a class="blog-nav-item" href="about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
+          <a class="blog-nav-item" href="http://localhost:3000/admin">Admins Bathroom</a> <!Seccion para administrar usuarios y tipos de  hospedaje > 
+          <a class="blog-nav-item" href="http://localhost:3000/user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su   perfil >
+          <a class="blog-nav-item active" href="http://localhost:3000/search">The Neigborhood</a> <!Seccion de ofertas de lugares >
+          <a class="blog-nav-item" href="http://localhost:3000/about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
         </nav>
       </div>
     </div>   
@@ -21,16 +21,6 @@
 <h1> Hospedajes Prueba </h1>
     <div class="row">
         <div class="col-md-6">
- <!--             
- <div class="container"> 
-      <%= form_tag search_path, :method => :'get' do %>
-                <p>
-                    <%= text_field_tag :search, params[:search] %>
-                    <%= submit_tag "Nueva Busqueda" %>
-                </p>
-
-      <% end %>
-      </div> -->
 
       <div class="panel panel-success">
             <div class="panel-heading">
@@ -57,6 +47,7 @@
                 <th>Tamanio</th>
                 <th>Direccion</th>
                 <th>Descripcion</th>
+                <th> Ver Mas </th>
               </tr>
             </thead>
             <tbody>
@@ -64,7 +55,7 @@
 		<% @Hospedaje.each do |h| %>
 			<tr>
                 <td> <%= h.id %> </td><!-- <%= image_tag("0_0.png") %> -->
-                <td> <%= h.accomodation_type_id %> </td>
+                <td> <%= h.accommodation_type_id %> </td>
                 <td> <%= h.foto %> </td>
                 <td> <%= h.user_id %> </td>
                
@@ -95,23 +86,26 @@
 
                </td>
 
-                <!--  <td> <%= h.cantidadPersonas %> </td> -->
                 <td> 
-                  <% if h.cantidadPersonas == 1 %>
+                  <% if h.cantidad_personas == 1 %>
                      <button type="button" class="btn btn-success"> 1 </button>
-                  <% elsif h.cantidadPersonas == 2 %>
+                  <% elsif h.cantidad_personas == 2 %>
                      <button type="button" class="btn btn-info"> 2 </button>
-                  <% elsif h.cantidadPersonas == 3 %>
+                  <% elsif h.cantidad_personas == 3 %>
                      <button type="button" class="btn btn-primary"> 3 </button>
-                  <% elsif h.cantidadPersonas == 4 %>
+                  <% elsif h.cantidad_personas == 4 %>
                      <button type="button" class="btn btn-warning"> 4 </button>
-                  <% elsif h.cantidadPersonas == 5 %>
+                  <% elsif h.cantidad_personas == 5 %>
                      <button type="button" class="btn btn-danger"> 5 </button>
                   <% end %>   
                 </td>
                 <td> <%= h.direccion %> </td>
                 <td> <%= h.descripcion %> </td>
-                
+                <td> <%= button_to "    +      ",  
+                                  accommodation_more_path(h.id),
+                                  :method => :get,
+                                  :class  => "btn btn-lg btn-success" 
+                     %> </td>
                 
        </tr>
 		<% end %>

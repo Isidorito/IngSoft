@@ -1,0 +1,58 @@
+<!-- Creaciòn de hospedajes -->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+  </head>
+
+  <body>
+
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <a class="blog-nav-item" href="http://localhost:3000">Home</a>
+          <a class="blog-nav-item" href="http://localhost:3000/admin">Admins Bathroom</a> <!Seccion para administrar usuarios y tipos de  hospedaje > 
+          <a class="blog-nav-item active" href="http://localhost:3000/user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su   perfil >
+          <a class="blog-nav-item" href="http://localhost:3000/search">The Neigborhood</a> <!Seccion de ofertas de lugares >
+          <a class="blog-nav-item" href="http://localhost:3000/about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
+        </nav>
+      </div>
+    </div>   
+
+
+
+<h3> Nuevo Hospedaje </h3>
+	<div class="container">
+		<%= form_for @Hospedaje do |f| %>
+
+			<%=f.label :nombre,'Name' %> 
+			<%=f.text_field :nombre %>
+			<br></br>
+			<%=f.label :accommodation_type_id,'Tipo de hospedaje' %> 
+			<%=f.text_field :accommodation_type_id %>
+			<br></br>
+			<%=f.label :foto,'Foto' %> 
+			<%=f.text_field :foto %>
+			<br></br>
+			<%=f.label :cantidad_personas,'Cantidad Maxima de personas' %> 
+			<%=f.text_field :cantidad_personas %>
+			<br></br>
+			<%=f.label :activo, 'Agregar a Buscador' %>
+			<%=f.check_box :activo %>
+			<br></br>
+			<%=f.label :descripcion,'Descripcion' %> 
+			<%=f.text_field :descripcion %>
+			<br></br>
+			<%=f.hidden_field :user_id, :value => current_user.id %>
+
+
+
+			<%=f.submit 'Crear' %>
+
+		<% end %>
+	</div>
+
+	<td> <a href="/user" class="btn btn-lg btn-info" role="button" >Volver</a>	
+
+</body>

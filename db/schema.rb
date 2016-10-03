@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160925041934) do
+ActiveRecord::Schema.define(version: 20161002020912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,17 +23,18 @@ ActiveRecord::Schema.define(version: 20160925041934) do
   end
 
   create_table "accommodations", force: :cascade do |t|
-    t.integer  "accomodation_type_id"
+    t.integer  "accommodation_type_id"
     t.string   "foto"
     t.integer  "user_id"
-    t.integer  "puntaje"
-    t.integer  "cantidadPersonas"
-    t.boolean  "disponible"
+    t.integer  "puntaje",               default: 0
+    t.integer  "cantidad_personas",     default: 1
+    t.boolean  "activo",                default: true
     t.string   "direccion"
     t.string   "descripcion"
     t.string   "string"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                           null: false
+    t.datetime "updated_at",                           null: false
+    t.string   "nombre"
   end
 
   create_table "accomodations", force: :cascade do |t|
@@ -79,6 +80,26 @@ ActiveRecord::Schema.define(version: 20160925041934) do
     t.datetime "updated_at",                          null: false
     t.index ["email"], name: "index_installs_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_installs_on_reset_password_token", unique: true, using: :btree
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "accommodation_id"
+    t.integer  "accommodation_owner"
+    t.integer  "asker"
+    t.string   "question"
+    t.string   "answer"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.integer  "accommodation_id"
+    t.integer  "accommodation_owner"
+    t.integer  "requester"
+    t.date     "initial_date"
+    t.date     "final_date"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
   create_table "users", force: :cascade do |t|
