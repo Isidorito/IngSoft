@@ -21,7 +21,7 @@ class QuestionsController < ApplicationController
 
 	def update
 		@q = Question.find(params[:id])
-		@q.update(params.require(:answer))
+		@q.update(params.require(:question).permit(:answer))
 	end
 
 end
