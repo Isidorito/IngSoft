@@ -54,8 +54,8 @@
                               <button type="button" class="btn btn-lg btn-default">   0  </button>
                            <% else %>
                            <!-- Si hay Solicitudes, muestra el botòn en celeste -->
-                              <%= button_to "Ocultar",  
-                                  question(h.id),
+                              <%= button_to "X",  
+                                  request_url(h.id),
                                   :action => 'show',
                                   :method => :get,
                                   :class  => "btn btn-lg btn-primary" 

@@ -2,6 +2,8 @@
 <html lang="en">
   <head>
 
+
+
   </head>
 
   <body>
@@ -54,7 +56,7 @@
 
             <%= form_for @Pregunta do |p| %>
 
-                <%=p.label :question,'Ingrese su pregunta aquì' %> 
+                <span> <%=p.label :question,'Ingrese su pregunta aquì: '%>  </span>
                 <%=p.text_field :question %>
                
                 <%=p.hidden_field :accommodation_id, :value => @auxHId %>
@@ -63,12 +65,49 @@
                 
                 <%=p.hidden_field :accommodation_owner, :value => @auxOwner %>
                 
-            <%=p.submit 'Crear' %>
+            <%=p.submit 'Crear', :class => 'btn btn-xs btn-primary'%>
 
     <% end %>
 
         </div> 
 
+
+<! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
+
+<div class="container">
+<h1> Solicitar Reserva </h1>
+
+
+    
+    <div class="input-daterange input-group" id="datepicker" >
+        <span class="input-group-addon">Desde</span>
+        <input type="text" class="input-sm form-control" name="start" />
+        <span class="input-group-addon">Hasta</span>
+        <input type="text" class="input-sm form-control" name="end" />
+    </div>
+
+    <% sd = :id="datepicker" %>
+
+    <%= button_to "Solicitar",
+                                        requests_path(current_user.id),
+                                        :action => 'create', 
+                                        :method => :post,
+                                        :class => 'btn btn-xs btn-primary',
+                                        #Parametros
+                                        params: {
+                                        :accommodation_id => @auxHId,
+                                        :accommodation_owner => @auxOwner,
+                                        :requester => current_user.id,
+                                        :initial_date => sd
+                                        #:final_date => @endDate 
+                                      }
+                                        %>
+                                     
+    <br></br>
+
+          
+
+</div>
 
 <! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
 
@@ -79,4 +118,30 @@
 
 <a href="" class="btn btn-lg btn-info" role="button" >
             Volver
-        </a>     
+        </a>  
+
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
+<script>
+        $('.input-daterange').datepicker({
+        clearBtn: true,
+        language: "es",
+        autoclose: true,
+
+
+    });
+
+  </script> 
+
+          <script type="text/javascript">
+        var @startDate 
+        $(document).ready(function(){
+          $("#datepicker").getStartDate(@startDate);
+        });
+    </script>
+
+
+         
+</body>        
