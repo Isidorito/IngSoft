@@ -2,7 +2,7 @@ class RequestsController < ApplicationController
 
 	def create
 	
-		Request.create(params.permit(:accommodation_id, :accommodation_owner, :requester, :initial_date, :final_date))
+		Request.create(params.require(:request).permit(:accommodation_id, :accommodation_owner, :requester, :initial_date, :final_date))
 	
 	end
 

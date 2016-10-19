@@ -1,22 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-
-  </head>
-
-  <body>
-
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item" href="http://localhost:3000">Home</a>
-          <a class="blog-nav-item" href="http://localhost:3000/admin">Admins Bathroom</a> <!Seccion para administrar usuarios y tipos de  hospedaje > 
-          <a class="blog-nav-item active" href="http://localhost:3000/user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su perfil >
-          <a class="blog-nav-item" href="http://localhost:3000/search">The Neigborhood</a> <!Seccion de ofertas de lugares >
-          <a class="blog-nav-item" href="http://localhost:3000/about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
+          <!--  --> 
+          <%= link_to "Home", root_path, class:"blog-nav-item" %> 
+          <!-- Administraciòn Users y Tipos de Hospedaje  -->        
+          <%= link_to "Admins Bathroom", admin_path, class:"blog-nav-item" %>
+          <!-- Perfil privado de User -->
+          <%= link_to "Users Bedroom", user_path, class:"blog-nav-item active" %>
+          <!-- Busqueda de Hospedajes -->
+          <%= link_to "The Neigborhood", search_path, class:"blog-nav-item" %>
+          <!-- Secciòn de Info sobre la empresa -->
+          <%= link_to "Our Kitchen", about_path, class:"blog-nav-item" %>
         </nav>
       </div>
-    </div> 
+    </div>
 
     <! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
        <div class="container">
@@ -41,4 +38,3 @@
        </div>   
 <! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
 
-</body>

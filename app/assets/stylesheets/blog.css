@@ -29,8 +29,9 @@ h6, .h6 {
 
 @media (min-width: 1200px) {
   .container {
-    width: 970px;
-    background-color: #494949; 
+   /*  
+    width: 1200px;
+   background-color: #494949; */
   }
 }
 
@@ -87,7 +88,7 @@ h6, .h6 {
   padding-bottom: 20px;
 }
 .blog-title {
-  background-color: #494949;
+  /* background-color: #494949; **/
   margin-top: 30px;
   margin-bottom: 0;
   font-size: 60px;

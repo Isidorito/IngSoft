@@ -1,21 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
 
-
-
-  </head>
-
-  <body>
 
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item" href="http://localhost:3000">Home</a>
-          <a class="blog-nav-item" href="http://localhost:3000/admin">Admins Bathroom</a> <!Seccion para administrar usuarios y tipos de  hospedaje > 
-          <a class="blog-nav-item" href="http://localhost:3000/user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su perfil >
-          <a class="blog-nav-item active" href="http://localhost:3000/search">The Neigborhood</a> <!Seccion de ofertas de lugares >
-          <a class="blog-nav-item" href="http://localhost:3000/about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
+          <!--  --> 
+          <%= link_to "Home", root_path, class:"blog-nav-item" %> 
+          <!-- Administraciòn Users y Tipos de Hospedaje  -->        
+          <%= link_to "Admins Bathroom", admin_path, class:"blog-nav-item" %>
+          <!-- Perfil privado de User -->
+          <%= link_to "Users Bedroom", user_path, class:"blog-nav-item" %>
+          <!-- Busqueda de Hospedajes -->
+          <%= link_to "The Neigborhood", search_path, class:"blog-nav-item active" %>
+          <!-- Secciòn de Info sobre la empresa -->
+          <%= link_to "Our Kitchen", about_path, class:"blog-nav-item" %>
         </nav>
       </div>
     </div> 
@@ -77,18 +74,24 @@
 <div class="container">
 <h1> Solicitar Reserva </h1>
 
+<%= form_for Request.new do |r| %>
 
-    
     <div class="input-daterange input-group" id="datepicker" >
         <span class="input-group-addon">Desde</span>
-        <input type="text" class="input-sm form-control" name="start" />
+        <%=r.text_field :initial_date, class: "input-sm form-control"  %>
         <span class="input-group-addon">Hasta</span>
-        <input type="text" class="input-sm form-control" name="end" />
+        <%=r.text_field :final_date, class: "input-sm form-control" %>
     </div>
 
-    <% sd = :id="datepicker" %>
+    <%=r.hidden_field :accommodation_id, :value => @auxHId %>
+    <%=r.hidden_field :accommodation_owner, :value => @auxOwner %>
+    <%=r.hidden_field :requester, :value => current_user.id %>
 
-    <%= button_to "Solicitar",
+    <%=r.submit 'Solicitar', :class => 'btn btn-xs btn-primary'%>
+<% end %>
+
+<!--
+    <%# button_to "Solicitar",
                                         requests_path(current_user.id),
                                         :action => 'create', 
                                         :method => :post,
@@ -98,13 +101,13 @@
                                         :accommodation_id => @auxHId,
                                         :accommodation_owner => @auxOwner,
                                         :requester => current_user.id,
-                                        :initial_date => sd
+                                        #:initial_date => sd
                                         #:final_date => @endDate 
                                       }
                                         %>
                                      
     <br></br>
-
+-->
           
 
 </div>
@@ -116,9 +119,13 @@
 
 
 
-<a href="" class="btn btn-lg btn-info" role="button" >
-            Volver
-        </a>  
+<td>
+
+<%= link_to "Volver", 
+                        search_path, 
+                        class:"btn btn-lg btn-info" 
+            %>
+</td> 
 
     <!-- Bootstrap Date-Picker Plugin -->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
@@ -143,5 +150,4 @@
     </script>
 
 
-         
-</body>        
+               

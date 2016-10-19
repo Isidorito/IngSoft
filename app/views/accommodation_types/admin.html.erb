@@ -1,23 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-
-  </head>
-
-  <body>
-
-
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item" href="http://localhost:3000">Home</a>
-          <a class="blog-nav-item active" href="http://localhost:3000/admin">Admins Bathroom</a> <!Seccion para administrar usuarios y tipos de  hospedaje > 
-          <a class="blog-nav-item" href="http://localhost:3000/user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su   perfil >
-          <a class="blog-nav-item" href="http://localhost:3000/search">The Neigborhood</a> <!Seccion de ofertas de lugares >
-          <a class="blog-nav-item" href="http://localhost:3000/about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
+          <!--  --> 
+          <%= link_to "Home", root_path, class:"blog-nav-item" %> 
+          <!-- Administraciòn Users y Tipos de Hospedaje  -->        
+          <%= link_to "Admins Bathroom", admin_path, class:"blog-nav-item active" %>
+          <!-- Perfil privado de User -->
+          <%= link_to "Users Bedroom", user_path, class:"blog-nav-item" %>
+          <!-- Busqueda de Hospedajes -->
+          <%= link_to "The Neigborhood", search_path, class:"blog-nav-item" %>
+          <!-- Secciòn de Info sobre la empresa -->
+          <%= link_to "Our Kitchen", about_path, class:"blog-nav-item" %>
         </nav>
       </div>
-    </div>   
+    </div> 
 
 <% if user_signed_in? %>
  <% if current_user.admin == true %> <!-- Checks if the user has admin privileges -->
@@ -95,17 +91,36 @@
         </div>
       </div>
       
-      <td> <a href="/admin/new" class="btn btn-lg btn-info" role="button" >Crear Nuevo Tipo de Hospedaje</a>
-
+      <td> 
+            <%= link_to "Crear Nuevo Tipo de Hospedaje", 
+                        admin_new_path, 
+                        class:"btn btn-lg btn-info" 
+            %>
+      </td>
+      <td>
+            <%= link_to "Volver", 
+                        root_path, 
+                        class:"btn btn-lg btn-info" 
+            %>
       </td>
 
  <% else %>
-  <td> <a href="http://localhost:3000" class="btn btn-lg btn-danger" role="button" >Debe ser administrador para acceder a esta secciòn</a>  </td>
+  <td>  
+    <%= link_to "Debe ser administrador para acceder a esta secciòn", 
+              root_path, 
+              class:"btn btn-lg btn-danger" 
+    %>
+
+  </td>
  <% end %>
 
 <% else %>
-  <td> <a href="http://localhost:3000" class="btn btn-lg btn-danger" role="button" >Debe registrarse y ser administrador para acceder a esta secciòn</a>  </td>
+  <td>  
+    <%= link_to "Debe registrarse y ser administrador para acceder a esta secciòn", 
+                root_path, 
+                class:"btn btn-lg btn-danger" 
+    %>
+ </td>
 <% end %>
 
 
-    </body>

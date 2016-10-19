@@ -1,28 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-
-  </head>
-
-  <body>
-
     <div class="blog-masthead">
       <div class="container">
         <nav class="blog-nav">
-          <a class="blog-nav-item active" href="http://localhost:3000/">Home</a>
-          <a class="blog-nav-item" href="http://localhost:3000/admin">Admins Bathroom</a> <!Seccion para administrar usuarios y tipos de  hospedaje > 
-          <a class="blog-nav-item" href="http://localhost:3000/user">Users Bedroom</a>   <!Seccion para que los usuarios modifiquen su   perfil >
-          <a class="blog-nav-item" href="http://localhost:3000/search">The Neigborhood</a> <!Seccion de ofertas de lugares >
-          <a class="blog-nav-item" href="http://localhost:3000/about">Our Kitchen</a>        <!Seccion de informacion sobre CouchInn >
+          <!--  --> 
+          <%= link_to "Home", root_path, class:"blog-nav-item" %> 
+          <!-- Administraciòn Users y Tipos de Hospedaje  -->        
+          <%= link_to "Admins Bathroom", admin_path, class:"blog-nav-item active" %>
+          <!-- Perfil privado de User -->
+          <%= link_to "Users Bedroom", user_path, class:"blog-nav-item" %>
+          <!-- Busqueda de Hospedajes -->
+          <%= link_to "The Neigborhood", search_path, class:"blog-nav-item" %>
+          <!-- Secciòn de Info sobre la empresa -->
+          <%= link_to "Our Kitchen", about_path, class:"blog-nav-item" %>
         </nav>
       </div>
-    </div>  
-    
+    </div> 
+<!--    
     	<td> <%= @h.id %> </td>
     	<td> <%= @h.nombre %> </td>
     	<td> <%= @h.activo %> </td>
-    	
-
+  -->  	
+<h3> Modificar Tipo de Hospedaje </h3>
     <div class="container">
 		<%= form_for @h do |f| %>
 			<%=f.label :nombre,'Name' %> 
@@ -30,10 +27,15 @@
 			<br></br>
 			<%=f.label :activo %>
 			<%=f.check_box :activo %>
-
-			<%=f.submit 'Guardar' %>
+      <br></br>
+			<%=f.submit 'Guardar', :class => 'btn btn-xs btn-success' %>
 
 		<% end %>
 	</div>
 
-<td> <a href="/admin" class="btn btn-lg btn-info" role="button" >Volver</a>	
+<td> 
+<%= link_to "Volver", 
+                        admin_path, 
+                        class:"btn btn-lg btn-info" 
+            %>
+</td>            
