@@ -1,8 +1,18 @@
 class AccommodationTypesController < ApplicationController
 
 	def create 
+		@tipoHospedaje = AccommodationType.new(params.require(:accommodation_type).permit(:nombre,:activo))
+		#AccommodationType.create(params.require(:accommodation_type).permit(:nombre,:activo))
 
-		AccommodationType.create(params.require(:accommodation_type).permit(:nombre,:activo))
+		if @tipoHospedaje.save
+
+			redirect_to admin_path
+
+		else
+		
+			render :new
+
+		end		
 
 	end
 
@@ -22,7 +32,7 @@ class AccommodationTypesController < ApplicationController
 
 		#@h.accommodations.empty?
 		@h = AccommodationType.find(params[:id])
-		if !Accommodation.exists?(accomodation_type_id: @h.id )
+		if !Accommodation.exists?(accommodation_type_id: @h.id )
 				  
 				  @h.destroy
 				#  redirect_to :back
@@ -44,8 +54,18 @@ class AccommodationTypesController < ApplicationController
 
 
 	def update
-		#@h = AccommodationType.find(:id)
-		AccommodationType.where(:id => (params.require(:id))).update(params.require(:accommodation_type).permit(:nombre,:activo))
+		
+		@h = AccommodationType.find(params[:id])
+		if @h.update_attributes(params.require(:accommodation_type).permit(:nombre,:activo))
+
+			redirect_to admin_path
+
+		else
+		
+			render :edit
+
+		end		
+		#AccommodationType.where(:id => (params.require(:id))).update(params.require(:accommodation_type).permit(:nombre,:activo))
 
 		#AccommodationType.update(params.require(:accommodation_type).permit(:id,:nombre,:activo))		
 

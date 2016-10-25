@@ -61,7 +61,7 @@
 
         <div class="col-sm-8 blog-main">
 
-          <div class="blog-post">
+          <!--<div class="blog-post">
             <h2 class="blog-post-title">Post1</h2>
             <p class="blog-post-meta">Mes D, YYYY by <a href="#">Isi</a></p>
 
@@ -69,19 +69,96 @@
             
           </div><!-- /.blog-post -->
 
-          <div class="blog-post">
+          <!--<div class="blog-post">
             <h2 class="blog-post-title">Post2</h2>
             <p class="blog-post-meta">Mes DD, YYYY by <a href="#">Paly</a></p>
 
             <p>En el titulo deberìa ir el logo de la empresa.</p>
           </div><!-- /.blog-post -->
 
-          <div class="blog-post">
+          <!--<div class="blog-post">
             <h2 class="blog-post-title">Post3</h2>
             <p class="blog-post-meta">Mes DD, YYYY by <a href="#">Rober</a></p>
 
             <p>Cuando se està logueado debe mostrar otros 2 botones (logOut y Settings).</p>
           </div><!-- /.blog-post -->
+
+          <div class="blog-post">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+               
+                <th>Tipo de Hospedaje</th>
+                <th>Foto</th>
+                <th>Puntos</th>
+                <th>Tamanio</th>
+                <th>Direccion</th>
+                
+                <th> Ver Mas </th>
+              </tr>
+            </thead>
+            <tbody>
+    <% @Hospedaje.each do |h| %>
+     
+          <tr>
+                
+                <td> <%= h.accommodation_type_id %> </td>
+                <td> <%= h.foto %> </td>
+               
+               <td>
+                <% if h.puntaje == 0 %>
+                  <%= image_tag("/assets/stars/0_0.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 0 ) and (h.puntaje <= 10 )) %>
+                  <%= image_tag("/assets/stars/0_5.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 10 ) and (h.puntaje <= 20 )) %>
+                  <%= image_tag("/assets/stars/1.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 20 ) and (h.puntaje <= 30 ))%>
+                  <%= image_tag("/assets/stars/1_5.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 30 ) and (h.puntaje <= 40 ))%>
+                  <%= image_tag("/assets/stars/2.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 40 ) and (h.puntaje <= 50 )) %>
+                  <%= image_tag("/assets/stars/2_5.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 50 ) and (h.puntaje <= 60 )) %>
+                  <%= image_tag("/assets/stars/3.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 60 ) and (h.puntaje <= 70 )) %>
+                  <%= image_tag("/assets/stars/3_5.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 70 ) and (h.puntaje <= 80 )) %>
+                  <%= image_tag("/assets/stars/4.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 80 ) and (h.puntaje <= 90 )) %>
+                  <%= image_tag("/assets/stars/4_5.png", height: '15', width:'58') %> 
+                <% elsif ((h.puntaje > 90 ) and (h.puntaje <= 100 )) %>
+                  <%= image_tag("/assets/stars/5.png", height: '15', width:'58') %>
+                <% end %>
+
+               </td>
+
+                <td> 
+                  <% if h.cantidad_personas == 1 %>
+                     <button type="button" class="btn btn-success"> 1 </button>
+                  <% elsif h.cantidad_personas == 2 %>
+                     <button type="button" class="btn btn-info"> 2 </button>
+                  <% elsif h.cantidad_personas == 3 %>
+                     <button type="button" class="btn btn-primary"> 3 </button>
+                  <% elsif h.cantidad_personas == 4 %>
+                     <button type="button" class="btn btn-warning"> 4 </button>
+                  <% elsif h.cantidad_personas == 5 %>
+                     <button type="button" class="btn btn-danger"> 5 </button>
+                  <% end %>   
+                </td>
+                <td> <%= h.direccion %> </td>
+                
+                <td> <%= button_to "    +      ",  
+                                  accommodation_more_path(h.id),
+                                  :method => :get,
+                                  :class  => "btn btn-lg btn-success" 
+                     %> </td>
+                
+       </tr>
+
+    <% end %>
+           </tbody>
+       </table>
+    </div>
 
           <nav>
             <ul class="pager">
