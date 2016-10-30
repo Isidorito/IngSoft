@@ -17,24 +17,92 @@
 
     <! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
        <div class="container">
-          <h1> Solicitudes </h1>
+          <h1> Solicitudes Pendientes</h1>        
 
-            <% @Solicitud.each do |s| %> <!-- Muestra Hospedajes del Usuario -->
-                      
-                         <%= s.id %>  <br></br>
-                            
-                         <b>Usuario: </b> <%= s.requester %> <br></br>
-                         <b>ID del Hospedaje: </b> <%= s.accommodation_id %> <br></br>
+          <div class="blog-post">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+               
+                <th>Usuario</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+                <th>Aceptar</th>
+                <th>Rechazar</th>
+                
+              </tr>
+            </thead>
 
-                         
+            <tbody>
+              <% @Solicitud.each do |s| %>
+     
+                <tr>
+                
+                  <td> <%= s.requester %> </td>
+                  <td> <%= s.initial_date %> </td>
+              
+                  <td> <%= s.final_date %> </td>
+                
+                  <td> <%= button_to "     ",  
+                                  edit_request_path(s.id),
+                                  :method => :get,
+                                  :class  => "btn btn-lg btn-success" 
+                        %> </td>
 
-                            
-                                  
-            <% end %>          
+                  <td>
+                    <%= button_to "         ", 
+                      request_path(s.id), 
+                      :method => :delete,
+                      :class  => "btn btn-lg btn-danger",
+                      :data => {:confirm => 'Estàs seguro? Esta acciòn es irreversible'}
+                    %> 
+                  </td>      
+                
+                </tr>
 
-    
-
-
-       </div>   
+              <% end %>
+            </tbody>
+          </table>
+          </div>
+        </div>  
+      
 <! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
 
+<div class="container">
+          <h1> Solicitudes Aceptadas</h1>        
+
+          <div class="blog-post">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+               
+                <th>Usuario</th>
+                <th>Fecha Inicio</th>
+                <th>Fecha Fin</th>
+
+              </tr>
+            </thead>
+
+            <tbody>
+              <% @Aceptadas.each do |a| %>
+     
+                <tr>
+                
+                  <td> <%= a.requester %> </td>
+                  <td> <%= a.initial_date %> </td>              
+                  <td> <%= a.final_date %> </td>     
+               
+                </tr>
+
+              <% end %>
+            </tbody>
+          </table>
+          </div>
+        </div> 
+
+<! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
+
+<%= link_to "Volver", 
+                        user_path, 
+                        class:"btn btn-lg btn-info" 
+            %>        

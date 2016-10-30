@@ -46,6 +46,15 @@
           <%= link_to "The Neigborhood", search_path, class:"blog-nav-item" %>
           <!-- Secciòn de Info sobre la empresa -->
           <%= link_to "Our Kitchen", about_path, class:"blog-nav-item" %>
+          <% if user_signed_in? and ( current_user.vip == true ) %>
+
+            <%= link_to image_tag("/assets/premium/gem.jpg", size: "36x30"), user_path %>
+
+          <% else %>
+  
+            <%= link_to image_tag("/assets/premium/free.png", size: "36x30"), user_path %>  
+
+          <% end %> 
         </nav>
       </div>
     </div>

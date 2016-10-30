@@ -1,0 +1,83 @@
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="blog-nav">
+          <!--  --> 
+          <%= link_to "Home", root_path, class:"blog-nav-item active" %> 
+          <!-- Administraciòn Users y Tipos de Hospedaje  -->        
+          <%= link_to "Admins Bathroom", admin_path, class:"blog-nav-item" %>
+          <!-- Perfil privado de User -->
+          <%= link_to "Users Bedroom", user_path, class:"blog-nav-item" %>
+          <!-- Busqueda de Hospedajes -->
+          <%= link_to "The Neigborhood", search_path, class:"blog-nav-item" %>
+          <!-- Secciòn de Info sobre la empresa -->
+          <%= link_to "Our Kitchen", about_path, class:"blog-nav-item" %>
+          <% if user_signed_in? and ( current_user.vip == true ) %>
+
+            <%= link_to image_tag("/assets/premium/premium.jpg", size: "36x30"), user_path %>
+
+          <% else %>
+  
+            <%= link_to image_tag("/assets/premium/free.png", size: "36x30"), user_path %>  
+
+          <% end %> 
+        </nav>
+      </div>
+    </div>
+
+<!--  -o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-   -->
+
+<h3> Hacerse Premium </h3>
+
+    <div class="container">
+          <%= form_for @tarjeta do |t| %>
+                <%=t.label :nombre,'Nombre' %> 
+                <%=t.text_field :nombre %>
+              
+                <%=t.label :apellido,'Apellido' %> 
+                <%=t.text_field :apellido %>
+              <br></br>
+                <%=t.label :direccion,'Direcciòn' %> 
+                <%=t.text_field :direccion %>
+              <br></br>
+                <%=t.label :cp,'Codigo Postal' %> 
+                <%=t.text_field :cp %>
+              
+                <%=t.label :ciudad,'Ciudad' %> 
+                <%=t.text_field :ciudad %>
+              <br></br>
+                <%=t.label :pais,'Paìs' %> 
+                <%=t.text_field :pais %>
+              <br></br>
+                <%=t.label :email,'E-mail' %> 
+                <%=t.text_field :email %>
+              <br></br>
+                <%=t.label :tipo,'Tarjeta' %> 
+                <%=t.text_field :tipo %>
+              <br></br>
+                <%=t.label :numero,'Nº de Tarjeta' %> 
+                <%=t.text_field :numero %>
+              <br></br>
+                <%=t.label :vencimiento,'Vencimiento' %> 
+                <%=t.date_select :vencimiento, :discard_day => true, :start_year => Date.today.year, :end_year => (Date.today.year+10), :use_month_numbers => true %>
+              <br></br>
+                <%=t.label :codigo,'CCV' %> 
+                <%=t.text_field :codigo %>
+              <br></br>
+             
+          <%=t.submit 'Hacerse Premium', :class => 'btn btn-xs btn-success' %>
+
+    <% end %>
+  </div>
+
+
+
+
+
+<!--  -o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-   -->
+<td>
+ <%= link_to "Volver", 
+                        admin_path, 
+                        class:"btn btn-lg btn-info" 
+            %>
+</td>    
+

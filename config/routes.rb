@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :requests
 
+  resources :cards
+
   root 'layouts#index'
 
   #Routea los html de la barra de direcciones que estàn en layouts.
@@ -26,6 +28,7 @@ Rails.application.routes.draw do
   get '/accommodation/new'   ,to:'accommodations#new'
   get '/accommodation'       ,to:'accommodations#cambioStatus'
   get '/accommodation/more'  ,to:'accommodations#more'
+  get '/premium'             ,to:'cards#getpremium'
 
   get '/users/sign_up'      ,to:'devise/registrations#new'
 end
