@@ -90,7 +90,11 @@
                 
                 <td> <%= h.accommodation_type_id %> </td>
                 
-                <td> <%= image_tag( "#{h.foto}", size: "100x100"  ) %> </td>
+                <% if h.user.vip == true %>
+                    <td> <%= image_tag( "#{h.foto}", size: "100x100"  ) %> </td>
+                <% else %>
+                    <td> <%= image_tag( "/assets/premium/prem.png", size: "100x100"  ) %> </td>
+                <% end %>
                
                <td>
                 <% if h.puntaje == 0 %>

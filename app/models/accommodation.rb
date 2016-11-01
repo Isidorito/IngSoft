@@ -1,5 +1,9 @@
 class Accommodation < ApplicationRecord
 
+	belongs_to :user, required: true
+	belongs_to :accommodation_type, required: true
+	has_many :questions
+	has_many :requests
 	
 def self.index(search)
 #  where(    'accommodation_type_id ILIKE ?' ||
