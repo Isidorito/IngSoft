@@ -1,8 +1,7 @@
     <div class="blog-masthead">
+      <%= link_to image_tag("/assets/logos/logo.png", size: "110x40", class: "col-md-2"), root_path %> 
       <div class="container">
-        <nav class="blog-nav">
-          <!--  --> 
-          <%= link_to "Home", root_path, class:"blog-nav-item active" %> 
+        <nav class="blog-nav">          
           <!-- Administraciòn Users y Tipos de Hospedaje  -->        
           <%= link_to "Admins Bathroom", admin_path, class:"blog-nav-item" %>
           <!-- Perfil privado de User -->
@@ -13,11 +12,11 @@
           <%= link_to "Our Kitchen", about_path, class:"blog-nav-item" %>
           <% if user_signed_in? and ( current_user.vip == true ) %>
 
-            <%= link_to image_tag("/assets/premium/premium.jpg", size: "36x30"), user_path %>
+            <%= link_to image_tag("/assets/premium/gemp.png", size: "40x40"), user_path %>
 
           <% else %>
   
-            <%= link_to image_tag("/assets/premium/free.png", size: "36x30"), user_path %>  
+            <%= link_to image_tag("/assets/premium/gemf.png", size: "40x40"), user_path %>  
 
           <% end %> 
         </nav>
@@ -25,7 +24,11 @@
     </div>
 
 <!--  -o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-   -->
+<% if user_signed_in? and ( current_user.vip == true ) %>
 
+<h3> Usted ya es Premmium!</h3>
+
+<% else %>
 <h3> Hacerse Premium </h3>
 
     <div class="container">
@@ -68,7 +71,7 @@
 
     <% end %>
   </div>
-
+<% end %>
 
 
 
@@ -76,7 +79,7 @@
 <!--  -o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-   -->
 <td>
  <%= link_to "Volver", 
-                        admin_path, 
+                        user_path, 
                         class:"btn btn-lg btn-info" 
             %>
 </td>    
