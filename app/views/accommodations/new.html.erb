@@ -25,7 +25,7 @@
 			<%=f.text_field :nombre %>
 			<br></br>
 			<%=f.label :accommodation_type_id,'Tipo de hospedaje' %> 
-			<%=f.text_field :accommodation_type_id %>
+			<%=f.collection_select(:accommodation_type_id, AccommodationType.all, :id, :nombre) %>
 			<br></br>
 			<%=f.label :foto,'Foto' %> 
 			<%=f.text_field :foto %>

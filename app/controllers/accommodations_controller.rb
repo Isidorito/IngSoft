@@ -1,7 +1,7 @@
 class AccommodationsController < ApplicationController
 
 	def new
-
+		@t = AccommodationType.all
 		@Hospedaje = Accommodation.new
 		
 	end

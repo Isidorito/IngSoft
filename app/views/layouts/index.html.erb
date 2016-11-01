@@ -88,7 +88,7 @@
      
           <tr>
                 
-                <td> <%= h.accommodation_type_id %> </td>
+                <td> <%= h.accommodation_type.nombre %> </td>
                 
                 <% if h.user.vip == true %>
                     <td> <%= image_tag( "#{h.foto}", size: "100x100"  ) %> </td>
@@ -164,7 +164,7 @@
           <div class="sidebar-module sidebar-module-inset">
              <h4> :) </h4>
               <% if user_signed_in? %> 
-                <strong><%= current_user.email %></strong>. 
+                <%= image_tag( "/assets/furniture/sofa.png", size: "35x35" ) %><strong><%= current_user.email %></strong>. 
                 <nav>
                 <ul class="pager">
               <li><th><%= button_to 'Edit profile', edit_user_registration_path, method: :get, :class => 'btn btn-xs btn-primary' %> </li>

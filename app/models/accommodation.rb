@@ -4,7 +4,8 @@ class Accommodation < ApplicationRecord
 	belongs_to :accommodation_type, required: true
 	has_many :questions
 	has_many :requests
-	
+	after_initialize :init
+
 def self.index(search)
 #  where(    'accommodation_type_id ILIKE ?' ||
 #			'foto ILIKE ?' ||
@@ -24,4 +25,7 @@ def self.index(search)
   end						
 end	
 
+ def init
+      self.puntaje = rand(0..100)
+ end     
 end	

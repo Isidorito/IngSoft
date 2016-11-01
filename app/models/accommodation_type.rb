@@ -4,6 +4,6 @@ class AccommodationType < ApplicationRecord
 		presence: true,
 		uniqueness: true
 
-	has_many :accomodations	
+	has_many :accommodations	
 
 end

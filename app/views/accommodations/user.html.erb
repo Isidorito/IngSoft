@@ -21,11 +21,12 @@
         <a href="/accommodation/new" class="btn btn-lg btn-info" role="button" >Ingresar Nuevo Hospedaje</a>
 
         <% if current_user.vip != true %>
-            <%= link_to image_tag("/assets/premium/upgrade.png", size: "50x50", class: "pull-right"), premium_path %>
+            <%= link_to image_tag("/assets/premium/gemf.png", size: "50x50", class: "pull-right"), premium_path %>
         
         <% else %>
-            <%= link_to image_tag("/assets/premium/gem.jpg", size: "70x50", class: "pull-right"), premium_path %>
+            <%= link_to image_tag("/assets/premium/gemp.png", size: "50x50", class: "pull-right"), premium_path %>
         <% end %>
+        <%= button_to 'Edit profile', edit_user_registration_path, method: :get, :class => 'btn btn-xs btn-primary pull-right' %>
         <br></br>
       </div> 
 <! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
@@ -131,7 +132,7 @@
                 <thead>
                   <tr>
                     <th>#</th>
-                    <th>id Hospedaje</th>
+                    <th>Hospedaje</th>
                     <th>Propietario</th>
                     <th>Pregunta</th>
                     <th>Respuesta</th>
@@ -145,7 +146,7 @@
                     <% @MisPreguntas.each do |m| %>
                     <tr>
                           <td> <%= m.id %>     </td>
-                          <td> <%= m.accommodation_id %>     </td>
+                          <td> <%= m.accommodation.nombre %>     </td>
                           <td> <%= m.accommodation_owner %>     </td>
                           <td> <%= m.question %>     </td>
                             <% if m.answer == nil %>
