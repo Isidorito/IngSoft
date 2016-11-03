@@ -28,16 +28,16 @@
   </div>
   <div class="field">
     <%= f.label :nacimiento, 'Fecha de nacimiento' %>
-    <%= f.date_select :nacimiento, :start_year => Date.current.year, :end_year => 1920, :use_month_numbers => true %>
+    <%= f.date_select :nacimiento, :start_year => ( Date.current.year - 18 ), :end_year => 1920, :use_month_numbers => true %>
     <%= f.label :sexo %>
     <%= f.select :sexo, User::GENDER_TYPES %>
     <%= f.label :nacionalidad %>
     <%= f.text_field :nacionalidad %>
   </div>
 
-  <div class="field">
+  <!-- <div class="field">
     <%= f.label :nick, 'Nombre de usuario' %><i>(Campo obligatorio)</i>
-    <%= f.text_field :nick %>
+    <%= f.text_field :nick %> -->
 
     <%= f.label :email %>
     <%= f.email_field :email, autofocus: true %>

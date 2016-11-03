@@ -25,7 +25,7 @@
 			<%=f.text_field :nombre %>
 			<br></br>
 			<%=f.label :accommodation_type_id,'Tipo de hospedaje' %> 
-			<%=f.collection_select(:accommodation_type_id, AccommodationType.all, :id, :nombre) %>
+			<%=f.collection_select(:accommodation_type_id, AccommodationType.where(:activo => true ), :id, :nombre) %>
 			<br></br>
 			<%=f.label :foto,'Foto' %> 
 			<%=f.text_field :foto %>
@@ -37,7 +37,7 @@
 			<%=f.check_box :activo %>
 			<br></br>
 			<%=f.label :descripcion,'Descripcion' %> 
-			<%=f.text_field :descripcion %>
+			<%=f.text_area :descripcion %>
 			<br></br>
 			<%=f.hidden_field :user_id, :value => current_user.id %>
 

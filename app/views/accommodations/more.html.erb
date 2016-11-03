@@ -28,11 +28,11 @@
                             
                          <b>Nombre: </b> <%= h.nombre %> <br></br>
                          
-                         <b>Tipo de Hospedaje:    </b> <%= h.accommodation_type_id %> <br></br>
+                         <b>Tipo de Hospedaje:    </b> <%= h.accommodation_type.nombre %> <br></br>
                          <b>Capacidad:            </b> <%= h.cantidad_personas %> <br></br>
-                         <b>Usuario:              </b> <%= h.user_id %> <br></br>
-                         <b>Direcciòn:            </b> <%= h.direccion %> <br></br>
-                         <b>Imagen:               </b> <%= h.foto %> <br></br>
+                         <b>Usuario:              </b> <%= h.user.nombre %> <%= h.user.apellido %><br></br>
+                         <!-- <b>Direcciòn:            </b> <%= h.direccion %> <br></br> -->
+                         <b>Imagen:               </b> <%= image_tag( "#{h.foto}", size: "100x100"  ) %> <br></br>
                          <b>Puntuaciòn del Lugar: </b> <%= h.puntaje %> <br></br>
                          <b>Descripciòn:          </b> <%= h.descripcion %> <br></br>  
 
@@ -46,7 +46,9 @@
 
 
        </div>   
-<! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
+
+<% if @auxOwner != current_user.id %>       
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
         <div class="container">
             <h1> Realizar Pregunta </h1>
@@ -66,10 +68,10 @@
 
     <% end %>
 
-        </div> 
+        </div>  
 
 
-<! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 <div class="container">
 <h1> Solicitar Reserva </h1>
@@ -112,12 +114,55 @@
 
 </div>
 
-<! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////>
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<% else %>
+  <p> No se muestra formulario de preguntas ni formulario de solicitud por ser el dueño de este hospedaje </p>
+<% end %>
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
+<div class="container">
+          <h1> Preguntas </h1>
+
+            <% @Listapreg.each do |p| %> <!-- Muestra Hospedajes del Usuario -->
+                      
+                         <%= p.id %>  <br></br>
+                            
+                         <b>Usuario: </b> <%= p.asker %> <br></br>
+                         
+                         <b>Pregunta:    </b> <%= p.question %> <br></br>
+
+                        <% if ( p.answer == nil ) && p.accommodation_owner == current_user.id%>
+
+                              <%= form_for p do |p| %>
 
 
+                                  <%=p.label :answer,'Ingrese su respuesta aquì' %> 
+                                  <%=p.text_field :answer %>
+
+                                  <%=p.hidden_field :id %>
+
+                                  <%=p.submit 'Responder' %>
+
+                              <% end %>
+
+                        <% else %>
+
+                          <b>Respuesta:    </b> <%= p.answer %> <br></br>
 
 
+                        <% end %>
+                            
+                                  
+            <% end %>          
 
+    
+
+
+       </div>
+
+<!-- /////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
 
 <td>
 

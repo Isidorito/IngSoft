@@ -37,12 +37,13 @@
             <thead>
               <tr>
                 <th>#</th>
-                <th>Tipo de Hospedaje</th>
+                <th>Hospedaje</th>
+                <th>Tipo</th>
                 <th>Foto</th>
                 <th>Propietario</th>
                 <th>Puntos</th>
                 <th>Tamanio</th>
-                <th>Direccion</th>
+                <!-- <th>Direccion</th> -->
                 <th>Descripcion</th>
                 <th> Ver Mas </th>
               </tr>
@@ -52,9 +53,14 @@
 		<% @Hospedaje.each do |h| %>
 			<tr>
                 <td> <%= h.id %> </td><!-- <%= image_tag("0_0.png") %> -->
-                <td> <%= h.accommodation_type_id %> </td>
-                <td> <%= h.foto %> </td>
-                <td> <%= h.user_id %> </td>
+                <td> <%= h.nombre %> </td> 
+                <td> <%= h.accommodation_type.nombre%> </td>
+                <% if h.user.vip == true %>
+                    <td> <%= image_tag( "#{h.foto}", size: "100x100"  ) %> </td>
+                <% else %>
+                    <td> <%= image_tag( "/assets/premium/prem.png", size: "100x100"  ) %> </td>
+                <% end %>
+                <td> <%= h.user.nombre %>  <%= h.user.apellido %> </td>
                
                <td>
                 <% if h.puntaje == 0 %>
@@ -96,7 +102,7 @@
                      <button type="button" class="btn btn-danger"> 5 </button>
                   <% end %>   
                 </td>
-                <td> <%= h.direccion %> </td>
+                <!-- <td> <%= h.direccion %> </td> -->
                 <td> <%= h.descripcion %> </td>
                 <td> <%= button_to "    +      ",  
                                   accommodation_more_path(h.id),

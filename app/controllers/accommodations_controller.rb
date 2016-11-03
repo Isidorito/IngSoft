@@ -49,6 +49,14 @@ class AccommodationsController < ApplicationController
 
 		@Hospedaje = Accommodation.where(:id => params[:format])
 		@Pregunta = Question.new
+
+			@Hospedaje.each do |h|
+
+			owner = h.user_id
+
+			end
+
+		@Listapreg = Question.where(:accommodation_owner => Accommodation.where(:id => params[:format]) ).order("id ASC")
 		
 	end
 end

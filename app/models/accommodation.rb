@@ -6,6 +6,9 @@ class Accommodation < ApplicationRecord
 	has_many :requests
 	after_initialize :init
 
+  validates :nombre,
+    presence: true
+    
 def self.index(search)
 #  where(    'accommodation_type_id ILIKE ?' ||
 #			'foto ILIKE ?' ||

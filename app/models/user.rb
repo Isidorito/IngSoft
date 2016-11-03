@@ -7,7 +7,7 @@ class User < ApplicationRecord
   GENDER_TYPES = [ "Hombre", "Mujer", "No estoy seguro" ]
 
   validates :sexo, inclusion: GENDER_TYPES
-  validates :nick, presence: true, uniqueness: true       
+  #validates :nick, presence: true, uniqueness: true       
 
          has_many :accomodations
          has_many :questions

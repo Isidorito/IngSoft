@@ -52,7 +52,7 @@
                       <tr>
                         <td> <%= h.id %>     </td><!--  Num Id -->
                         <td> <%= h.nombre %> </td><!--  Nombre del hospedaje -->
-                        <td> <%= h.foto %>   </td><!--  La imagen se puede cargar siempre, pero solo se muestra en las busquedas cuando el usuario es Premmium -->
+                        <td> <%= image_tag( "#{h.foto}", size: "100x100"  ) %>   </td><!--  La imagen se puede cargar siempre, pero solo se muestra en las busquedas cuando el usuario es Premmium -->
                         <td> <!-- Botòn Solicitudes -->
                            <% if !Request.exists?(accommodation_id: h.id )  %>  
                            <!-- Si no hay Solicitudes, muestra el botòn en gris -->
@@ -147,7 +147,7 @@
                     <tr>
                           <td> <%= m.id %>     </td>
                           <td> <%= m.accommodation.nombre %>     </td>
-                          <td> <%= m.accommodation_owner %>     </td>
+                          <td> <%= m.accommodation.user.nombre %>     </td>
                           <td> <%= m.question %>     </td>
                             <% if m.answer == nil %>
                                 <td> <button type="button" class="btn btn-lg btn-danger">      </button></td>
